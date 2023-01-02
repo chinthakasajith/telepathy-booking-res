@@ -21,11 +21,11 @@ public class BookingControllerTest extends TestCase {
     }
 
     public void testCheckoutAsAvailable() {
-        assertEquals("Available",new BookingController().checkoutAsAvailable("1B"));
+        assertEquals("Room is in Available status : Unable to make this room available. : 1B",new BookingController().checkoutAsAvailable("1B","clean"));
     }
 
     public void testCheckoutAsRepair() {
-        assertEquals("Room is not in vacant status : Unable to make this room repair. : 1C",new BookingController().checkoutAsRepair("1C"));
+        assertEquals("Room is not in vacant status : Unable to make this room repair. : 1C",new BookingController().checkoutAsRepair("1C","out of service"));
     }
 
     public void testCheckoutAsVacant() {

@@ -67,12 +67,14 @@ public class BookingController {
         return roomMap.replace(roomNo,status);
     }
 
-    public String checkoutAsAvailable(String roomNo){
-        return this.changeStatus(roomNo,"Available");
+    public String checkoutAsAvailable(String roomNo,String action){
+        if(roomMap.get(roomNo).equals("Vacant") && "clean".equals(action))
+            return this.changeStatus(roomNo,"Available");
+        return "Room is in "+roomMap.get(roomNo)+" status : Unable to make this room available. : "+roomNo;
     }
 
-    public String checkoutAsRepair(String roomNo){
-        if(roomMap.get(roomNo).equals("Vacant"))
+    public String checkoutAsRepair(String roomNo,String action){
+        if(roomMap.get(roomNo).equals("Vacant") && "out of service".equals(action))
             return this.changeStatus(roomNo,"Repair");
         return "Room is not in vacant status : Unable to make this room repair. : "+roomNo;
     }
